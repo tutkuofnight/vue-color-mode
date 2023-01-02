@@ -1,4 +1,4 @@
-# vue-module
+# vue-color-mode
 
 ## Project setup
 ```
