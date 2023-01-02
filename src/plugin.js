@@ -1,16 +1,32 @@
-import ColorMode from './components/ColorMode.vue'
-export default {
-  install: function(app , /* options */) {
-    app.component('color-mode' , ColorMode)
-    
-    app.directive('theme' , (el , binding , vnode) => {
-      console.log(el , binding , vnode)
-    })
-
-    app.mixin({
-      created(){
-        console.log('Component created')
+import Vue from 'vue'
+export const ColorMode = (/*{...options} */) => {
+  return new Vue({
+    data(){
+      return {
+        el: document.getElementById('app')
       }
-    })
+    },
+    created(){
+      this.el.classList.add(this.$theme)
+    },
+    methods: {
+      setTheme(){
+        this.el.classList.add(this.$theme)
+      }
+    },
+    watch: {
+      '$theme': {
+        handler: function(val){
+          this.setTheme()
+          console.log(val)
+        }
+      }
+    }
+  })
+}
+
+export const plugin = {
+  install(Vue){
+    Vue.prototype.$theme = ""
   }
 }

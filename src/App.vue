@@ -12,6 +12,7 @@ export default {
     swtichDarkMode(){
       const app = document.getElementById('app')
       app.style.background = 'black'
+      this.$theme = "dark"
     }
   }
 }

@@ -1,5 +1,5 @@
 # vue-color-mode
-
+I am currently learning a write a plugin. So , I am developing a color mode plugin for Vue 2
 ## Project setup
 ```
 npm install
