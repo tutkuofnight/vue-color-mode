@@ -1,5 +1,5 @@
 <template>
   <div>
-    Color Mode Component
+    <slot></slot>
   </div>
 </template>

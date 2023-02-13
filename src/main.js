@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
-import {plugin} from './plugin'
+import ColorMode from './plugin.js'
 Vue.config.productionTip = false
-Vue.use(plugin)
+Vue.use(ColorMode)
 new Vue({
   store,
   render: h => h(App)

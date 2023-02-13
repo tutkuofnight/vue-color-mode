@@ -1,32 +1,29 @@
-import Vue from 'vue'
-export const ColorMode = (/*{...options} */) => {
-  return new Vue({
-    data(){
-      return {
-        el: document.getElementById('app')
-      }
-    },
-    created(){
-      this.el.classList.add(this.$theme)
-    },
-    methods: {
-      setTheme(){
-        this.el.classList.add(this.$theme)
-      }
-    },
-    watch: {
-      '$theme': {
-        handler: function(val){
-          this.setTheme()
-          console.log(val)
-        }
-      }
-    }
-  })
+class ColorMode {
+  constructor(){
+    this.el = document.body
+    this.mode = localStorage.getItem("theme") || ""
+  }
+  clear(){
+    const classes = Array.from(document.body.classList)
+    if(classes)
+      this.el.classList.remove(classes.find(name => name.endsWith("-mode")))
+  }
+  load(){
+    if(this.mode)
+      this.el.classList.add(this.mode)
+  }
+  set(type){
+    this.clear()
+    if(!type) return localStorage.removeItem("theme")
+    const mode = type ? `${type}-mode` : ""
+    this.el.classList.add(mode)
+    localStorage.setItem("theme" , mode)
+  }
 }
-
-export const plugin = {
+export default {
   install(Vue){
-    Vue.prototype.$theme = ""
+    const colorMode = new ColorMode()
+    colorMode.load()
+    Vue.prototype.$setColorMode = (type) => colorMode.set(type)
   }
 }
